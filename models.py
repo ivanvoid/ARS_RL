@@ -23,6 +23,8 @@ class Cum_std:
         sum1, sum2, n = self.sum1, self.sum2, self.n
         if self.n == 0:
             self.std = np.zeros_like(x)
+        if self.n == 1:
+            self.std = np.std(np.array([self.std, x]), -1)
         else:
             self.std = np.sqrt(self.sum2/self.n - self.sum1*self.sum1/self.n/self.n) 
         return self.std
@@ -407,14 +409,14 @@ ARS_v1_SS
 class ARS_v1_SS(ARS_v1_RS):    
     def _sort_directions(self):
         buffer = np.array(self.buffer, dtype=object)
-        b_rewards = buffer[:, -2:].sum(1)
+        b_rewards = np.max(buffer[:, -2:], 1)
 
         # idxs from low to high
         b_idxs = np.argsort(b_rewards)
         b_buffer = buffer[b_idxs][-self.n_samples:]
 
         return b_buffer
-
+    
     def learn(self):
         b_buffer = self._sort_directions()
         update = np.zeros_like(self.policy.M)
