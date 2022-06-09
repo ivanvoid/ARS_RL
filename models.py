@@ -217,7 +217,6 @@ class BaseRandomSearch_v2:
     def _remap_actions(self, action):
         return np.tanh(action)
             
-    
 '''
 BRS_v2_RS (V2 model with random subset buffer update)
 '''
@@ -249,7 +248,6 @@ class BRS_v2_RS(BaseRandomSearch_v2):
         
         self.buffer = []
         self.states = []
-    
     
 '''
 BRS_v2_SS (V2 model with sorted subset buffer update)
@@ -285,8 +283,6 @@ class BRS_v2_SS(BRS_v2_RS):
         self.buffer = []
         self.states = []
         
-    
-    
 '''
 BRS_v2_SSn (Normalize state before training)
 '''
@@ -314,8 +310,6 @@ class BRS_v2_SSn(BRS_v2_SS):
             action = self.policy(state)
             return self._remap_actions(action)
                 
-    
-    
 '''
 ARS_v1
 '''
@@ -366,8 +360,7 @@ class ARS_v1:
         
     def _remap_actions(self, action):
         return np.tanh(action)
-            
-    
+     
 '''
 ARS_v1_RS
 '''
@@ -400,9 +393,7 @@ class ARS_v1_RS(ARS_v1):
         
         self.buffer = []
         self.std_rewards_over_training += [reward_std]
-          
-    
-    
+      
 '''
 ARS_v1_SS
 '''
@@ -434,8 +425,7 @@ class ARS_v1_SS(ARS_v1_RS):
         
         self.buffer = []
         self.std_rewards_over_training += [reward_std]
-        
-    
+ 
 '''
 ARS_v1_SSn
 '''
@@ -467,7 +457,6 @@ class ARS_v1_SSn(ARS_v1_SS):
         else:
             action = self.policy(state)
             return self._remap_actions(action)
-    
     
 '''
 ARS_v2
@@ -629,28 +618,4 @@ class ARS_v2_SSn(ARS_v2_SS):
         else:
             action = self.policy(state)
             return self._remap_actions(action)
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
             
